@@ -1,0 +1,33 @@
+{
+  "name": "ApiRest-NodeJs",
+  "version": "1.0.0",
+  "description": "Repo con Api rest que consulta, crea y actualiza datos en bd MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GinoPaolo/ApiRest-NodeJs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GinoPaolo/ApiRest-NodeJs/issues"
+  },
+  "homepage": "https://github.com/GinoPaolo/ApiRest-NodeJs#readme",
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "koa": "^2.12.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^9.0.1",
+    "mongoose": "^5.9.17",
+    "yenv": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
