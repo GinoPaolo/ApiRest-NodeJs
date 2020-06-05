@@ -5,10 +5,10 @@
  * por ejemplo:
  * router.get('person/byIndex', '/:index', controller.getByIndex) maneja la solicitudes desde person/99 donde 99 es el valor del parametro index
  */
-const KoaRouter=require('koa-router')
-const PersonController=require('../controllers/person.controller')
-const router=new KoaRouter({prefix:'/person'})
-const controller=new PersonController()
+const KoaRouter = require('koa-router')
+const PersonController = require('../controllers/person.controller')
+const router = new KoaRouter({ prefix: '/person' })
+const controller = new PersonController()
 
 // GET /person/29
 router.get('person/byIndex', '/:index', controller.getByIndex)
@@ -16,4 +16,4 @@ router.get('person/byIndex', '/:index', controller.getByIndex)
 // POST
 router.post('person/post', '/', controller.save)
 
-module.exports=router
+module.exports = router
