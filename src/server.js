@@ -17,16 +17,11 @@ const routes = require('./routes')
 const app = new Koa()
 
 // Inicializar los middleware
-app
-  .use(bodyParser())
-  .use(json())
-  .use(logger())
+app.use(bodyParser()).use(json()).use(logger())
 
 // Cargar los routes que escucharanlas peticiones http
 routes.map((item) => {
-  app
-  .use(item.routes())
-  .use(item.allowedMethods())
+  app.use(item.routes()).use(item.allowedMethods())
 })
 
 // Abrir la conexión con MongoDB
