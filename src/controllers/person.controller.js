@@ -12,7 +12,7 @@ module.exports = class PersonController {
    * desde el url de donde sacaremos el valor del parámetro index (ctx.params.index)
    */
   async getByIndex(ctx) {
-    const index = ctx.params.index && !isNaN(ctx.params.index)
+    const index = ctx.params.index && !isNaN(ctx.params.index) ? parseInt(ctx.params.index) : 0
     if (index > 0) {
       const filter = { index: index }
       const data = await repository.findOne(filter)
