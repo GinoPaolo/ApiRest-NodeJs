@@ -13,6 +13,9 @@ const controller = new PersonController()
 // GET /person/29
 router.get('person/byIndex', '/:index', controller.getByIndex)
 
+// GET /person/white/PE/male
+router.get('person/byFilters', '/:eyeColor/:country/:gender', controller.getByFilter)
+
 // POST
 router.post('person/post', '/', controller.save)
 

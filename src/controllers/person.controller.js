@@ -28,6 +28,25 @@ module.exports = class PersonController {
 
   /**
    *
+   * @param {object} ctx: contexto de koa que contiene los parámetros de la solicitud, en ete caso
+   * desde la url de donde scaremos los valores de los parámetros eyeColor, countr y gender
+   */
+  async getByFilter(ctx) {
+    const eyeColor = ctx.params.eyeColor
+    const country = ctx.params.country
+    const gender = ctx.params.gender
+
+    const filters = { eyeColor: eyeColor, country: country, gender: gender }
+    const data = await repository.findMany(filters)
+    if (data) {
+      ctx.body = data
+    } else {
+      ctx.throw(404, `No se ha encontrado la persona con los filtros: ${eyeColor}, ${country}, ${gender}`)
+    }
+  }
+
+  /**
+   *
    * @param {object} ctx: contexto de koa que contiene los parámetros solicitados, en este caso desde el body,
    * obtendremos las propiedades de la persona a guardar a traves de ctx.request.body
    */

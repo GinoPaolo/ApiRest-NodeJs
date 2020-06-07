@@ -15,6 +15,15 @@ module.exports = class PersonRepository {
 
   /**
    *
+   * @param {object} filters: puede contener una o varias propiedades de documento en MongoDB
+   * por el cual se desea buscar
+   */
+  async findMany(filters) {
+    return await PersonModel.find(filters)
+  }
+
+  /**
+   *
    * @param {object} person: contiene las propiedades del documento que se esea guardar,
    * debería coincidir con la colección people, con excepción de la propiedad _id que la
    * establece MongoDB automáticamente.
