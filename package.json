@@ -1,5 +1,5 @@
 {
-  "name": "ApiRest-NodeJs",
+  "name": "apirest-nodejs",
   "version": "1.0.0",
   "description": "Repo con Api rest que consulta, crea y actualiza datos en bd MongoDB",
   "main": "index.js",
@@ -30,6 +30,7 @@
     "koa-mongoose-paginate": "0.0.3",
     "koa-router": "^9.0.1",
     "mongoose": "^5.9.17",
+    "winston": "^3.2.1",
     "yenv": "^2.1.1"
   },
   "devDependencies": {

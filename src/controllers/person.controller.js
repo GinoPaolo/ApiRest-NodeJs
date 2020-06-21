@@ -3,6 +3,7 @@
  * Responsable por recibir las solicitudes http desde el router person.route.js
  */
 const PersonRepository = require('../repositories/person.repository')
+const errorFactory = require('../utils/logging/error-factory')
 const repository = new PersonRepository()
 
 module.exports = class PersonController {
@@ -13,16 +14,12 @@ module.exports = class PersonController {
    */
   async getByIndex(ctx) {
     const index = ctx.params.index && !isNaN(ctx.params.index) ? parseInt(ctx.params.index) : 0
-    if (index > 0) {
-      const filter = { index: index }
-      const data = await repository.findOne(filter)
-      if (data) {
-        ctx.body = data
-      } else {
-        ctx.throw(404, `No se ha encontrado la persona con el indice ${index}`)
-      }
+    const filter = { index: index }
+    const data = await repository.findOne(filter)
+    if (data) {
+      ctx.body = data
     } else {
-      ctx.throw(422, `Valor ${ctx.params.index} no soportado`)
+      throw errorFactory.NotFoundError(`No se ha encontrado la persona con el índice ${index}`)
     }
   }
 

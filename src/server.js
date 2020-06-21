@@ -12,16 +12,27 @@ const mongoose = require('mongoose')
 
 const env = yenv()
 const routes = require('./routes')
+const apiError = require('./utils/api-error')
+const LogManager = require('./utils/logging/log-manager')
 
 // Inicializar nuestro servidor usando koa (similar a express)
 const app = new Koa()
+const logManager = new LogManager()
 
 // Inicializar los middleware
-app.use(bodyParser()).use(json()).use(logger())
+app.use(bodyParser()).use(json()).use(logger()).use(apiError)
 
 // Cargar los routes que escucharanlas peticiones http
 routes.map((item) => {
   app.use(item.routes()).use(item.allowedMethods())
+})
+
+app.on('error', (err, ctx) => {
+  console.error('loggin error')
+  const isOperationalError = logManager.error(err)
+  if (!isOperationalError) {
+    process.exit(1)
+  }
 })
 
 // Abrir la conexión con MongoDB

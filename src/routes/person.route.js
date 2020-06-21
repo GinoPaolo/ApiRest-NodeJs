@@ -7,16 +7,23 @@
  */
 const KoaRouter = require('koa-router')
 const PersonController = require('../controllers/person.controller')
+const personSchemas = require('../schemas/person.schema')
+const schemaValidator = require('../utils/schema-validator')
 const router = new KoaRouter({ prefix: '/person' })
 const controller = new PersonController()
 
+const byIndexValidator = schemaValidator({ params: personSchemas.byIndex })
+const postValidator = schemaValidator({ body: personSchemas.post })
+
 // GET /person/29
-router.get('person/byIndex', '/:index', controller.getByIndex)
+// router.get('person/byIndex', '/:index', controller.getByIndex)
+router.get('person/byIndex', '/:index', byIndexValidator, controller.getByIndex)
 
 // GET /person/white/PE/male
 router.get('person/byFilters', '/:eyeColor/:country/:gender', controller.getByFilter)
 
 // POST
-router.post('person/post', '/', controller.save)
+// router.post('person/post', '/', controller.save)
+router.post('person/post', '/', postValidator, controller.save)
 
 module.exports = router
