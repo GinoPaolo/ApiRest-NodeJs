@@ -1,5 +1,5 @@
 {
-  "name": "ApiRest-NodeJs",
+  "name": "apirest-nodejs",
   "version": "1.0.0",
   "description": "Repo con Api rest que consulta, crea y actualiza datos en bd MongoDB",
   "main": "index.js",
