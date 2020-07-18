@@ -29,13 +29,12 @@ module.exports = class PersonController {
    * desde la url de donde scaremos los valores de los parámetros eyeColor, countr y gender
    */
   async getByFilter(ctx) {
-    const { skip, limit } = ctx.query
+    const { page, size } = ctx.query
     const eyeColor = ctx.params.eyeColor
     const country = ctx.params.country
     const gender = ctx.params.gender
-
     const filters = { eyeColor: eyeColor, country: country, gender: gender }
-    const data = await repository.findMany(filters, skip, limit)
+    const data = await repository.findMany(filters, page * size, size)
     if (data) {
       ctx.body = data
     } else {
