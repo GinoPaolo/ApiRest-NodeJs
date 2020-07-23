@@ -2,7 +2,7 @@ const Joi = require('@hapi/joi')
 
 // esquema de validación que usaremos en el route GET person/:index
 const byIndex = Joi.object().keys({
-  index: Joi.number().min(1).required(),
+  index: Joi.number().min(3).required(),
 })
 
 // esquema de validación que usaremos en el route POST person/
@@ -17,6 +17,10 @@ const post = Joi.object().keys({
   email: Joi.string().email().required(),
   phone: Joi.string().required(),
   address: Joi.string().required(),
+  preferences: {
+    hobby: Joi.string().required(),
+    color: Joi.string().valid('rojo', 'azul', 'verde').required(),
+  },
 })
 
 module.exports = {
