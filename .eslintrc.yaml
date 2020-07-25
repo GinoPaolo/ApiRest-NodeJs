@@ -15,4 +15,5 @@ parserOptions:
   sourceType: module
 plugins:
   - prettier
+  - jest
 rules: {}
